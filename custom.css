@@ -2,3 +2,9 @@ html {
     --content-maxwidth: auto;
     
   }
+  .contact-box {
+    border: 2px solid #000;
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 10px;
+}
