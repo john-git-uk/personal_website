@@ -148,14 +148,14 @@ Enable and Disable IPv6 Quick</h3>
 <div class="line">sysctl -w net.ipv6.conf.lo.disable_ipv6=1</div>
 </div><!-- fragment --><h3><a class="anchor" id="autotoc_md11"></a>
 sysctl Settings</h3>
-<p >These settings control ipv6 routing and whether the system uses the routing advertisments to configure addresses. </p><div class="fragment"><div class="line">echo &quot;net.ipv6.conf.all.accept_ra = 0&quot; | sudo tee -a /etc/sysctl.conf</div>
+<p >These settings control ipv6 routing and whether the system uses the routing advertisements to configure addresses. </p><div class="fragment"><div class="line">echo &quot;net.ipv6.conf.all.accept_ra = 0&quot; | sudo tee -a /etc/sysctl.conf</div>
 <div class="line">echo &quot;net.ipv6.conf.default.accept_ra = 0&quot; | sudo tee -a /etc/sysctl.conf</div>
 <div class="line">echo &quot;net.ipv6.conf.eth_int0.accept_ra = 0&quot; | tee -a /etc/sysctl.conf</div>
 <div class="line">echo &quot;net.ipv6.conf.eth_out0.accept_ra = 0&quot; | tee -a /etc/sysctl.conf</div>
 <div class="line">echo &quot;net.ipv6.conf.all.forwarding = 1&quot; | tee -a /etc/sysctl.conf</div>
 </div><!-- fragment --> <h3><a class="anchor" id="autotoc_md12"></a>
 Assigning IP to Outgoing Interface</h3>
-<p >This uses the ip command from the iproute2 package to dynamicly add all of the inside global addresses to the WAN facing interface. </p>
+<p >This uses the ip command from the iproute2 package to dynamically add all of the inside global addresses to the WAN facing interface. </p>
 <h4><a class="anchor" id="autotoc_md13"></a>
 /root/assign_nat_pool.sh</h4>
 <p >REDACTED must be replaced with your valid IPv6 globally routable prefix. </p><div class="fragment"><div class="line">#!/bin/ash</div>
@@ -175,7 +175,7 @@ Assigning IP to Outgoing Interface</h3>
 <div class="line">done</div>
 </div><!-- fragment --> <h3><a class="anchor" id="autotoc_md14"></a>
 Disabling Bootloader Network Names</h3>
-<p >Linux has a tendancy to rename interfaces when rebooting. This makes it difficult to configure. To solve this I have to rename the interfaces based on their mac address. </p>
+<p >Linux has a tendency to rename interfaces when rebooting. This makes it difficult to configure. To solve this I have to rename the interfaces based on their mac address. </p>
 <h4><a class="anchor" id="autotoc_md15"></a>
 /etc/update-extlinux.conf</h4>
 <p ><a class="anchor" id="autotoc_md16"></a> </p><h5>Add net.ifnames=0 and biosdevname=0 to the APPEND line:</h5>
