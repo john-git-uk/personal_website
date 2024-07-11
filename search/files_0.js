@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['excluded_2emd_0',['excluded.md',['../excluded_8md.html',1,'']]]
+  ['nat66_5frouter_2emd_0',['nat66_router.md',['../nat66__router_8md.html',1,'']]]
 ];

@@ -27,7 +27,6 @@ var NAVTREE =
   [ "Networking Design - Johnathan Moore", "index.html", [
     [ "Readme", "index.html", null ],
     [ "NAT66 Router", "md__home_john_networking_design_nat66_router_nat66_router.html", null ],
-    [ "excluded", "md__home_john_networking_design_topology1_excluded.html", null ],
     [ "Topology 1 Journal", "md__home_john_networking_design_topology1_topology1_journal.html", [
       [ "Propietary Software Requirements", "md__home_john_networking_design_topology1_topology1_journal.html#autotoc_md28", [
         [ "Cisco IOS", "md__home_john_networking_design_topology1_topology1_journal.html#autotoc_md29", null ]
