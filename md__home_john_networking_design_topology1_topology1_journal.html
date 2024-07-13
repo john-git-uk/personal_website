@@ -1179,7 +1179,7 @@ R1 Config</h3>
 <div class="line">permit ip any any</div>
 <div class="line">exit</div>
 <div class="line"> </div>
-<div class="line">ip nat inside source list NAT interface ethernet 0/1 overload</div>
+<div class="line">ip nat inside source list NAT interface g2 overload</div>
 <div class="line"> </div>
 <div class="line">ip access-list extended WAN_FILTER</div>
 <div class="line">10 deny ip 224.0.0.0 15.255.255.255 any</div>
@@ -1188,9 +1188,9 @@ R1 Config</h3>
 <div class="line">100000 deny ip any any log</div>
 <div class="line">exit</div>
 <div class="line"> </div>
-<div class="line">interface e0/0</div>
+<div class="line">interface r g1,g3</div>
 <div class="line">ip nat inside</div>
-<div class="line">interface Ethernet0/1</div>
+<div class="line">interface g2</div>
 <div class="line">ip nat outside</div>
 <div class="line">ip access-group WAN_FILTER out</div>
 <div class="line">exit</div>
@@ -1280,7 +1280,7 @@ R1 Config</h3>
 <div class="line"> </div>
 <div class="line">interface Tunnel0</div>
 <div class="line">ip address 192.168.2.68 255.255.255.254</div>
-<div class="line">tunnel source Ethernet0/1</div>
+<div class="line">tunnel source g2</div>
 <div class="line">tunnel mode ipsec ipv4</div>
 <div class="line">tunnel destination 10.10.10.30</div>
 <div class="line">tunnel protection ipsec profile VPNPROFILE</div>
@@ -1840,10 +1840,14 @@ R1 Config</h3>
 <div class="line">interface g1</div>
 <div class="line">ipv6 enable</div>
 <div class="line">ipv6 add 2001:db8:0:ff::fff5/127</div>
+<div class="line">no shutdown</div>
+<div class="line">exit</div>
 <div class="line"> </div>
 <div class="line">interface l0</div>
 <div class="line">ipv6 enable</div>
 <div class="line">ipv6 add 2001:db8:0:3::ff1/128</div>
+<div class="line">no shutdown</div>
+<div class="line">exit</div>
 <div class="line"> </div>
 <div class="line">interface g2</div>
 <div class="line">ipv6 enable</div>
