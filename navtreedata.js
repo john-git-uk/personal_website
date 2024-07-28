@@ -37,17 +37,17 @@ var NAVTREE =
         [ "All Container Config", "md__home_john_networking_design_topology1_topology1_journal.html#autotoc_md34", null ],
         [ "ISP IPv4 Contract", "md__home_john_networking_design_topology1_topology1_journal.html#autotoc_md35", null ],
         [ "Loopbacks IPv4 192.168.2.0/26", "md__home_john_networking_design_topology1_topology1_journal.html#autotoc_md36", null ],
-        [ "Links IPv4 Starting at 192.168.2.64", "md__home_john_networking_design_topology1_topology1_journal.html#autotoc_md37", [
+        [ "IPv4 Links in subnet 192.168.2.64/26", "md__home_john_networking_design_topology1_topology1_journal.html#autotoc_md37", [
           [ "(.64 to .127) subnetted /31", "md__home_john_networking_design_topology1_topology1_journal.html#autotoc_md38", null ]
         ] ],
         [ "Vlans & IPv4", "md__home_john_networking_design_topology1_topology1_journal.html#autotoc_md39", [
-          [ "vlan 10 sales", "md__home_john_networking_design_topology1_topology1_journal.html#autotoc_md40", null ],
-          [ "vlan 20 guest", "md__home_john_networking_design_topology1_topology1_journal.html#autotoc_md41", null ],
-          [ "vlan 30 management", "md__home_john_networking_design_topology1_topology1_journal.html#autotoc_md42", null ],
-          [ "vlan 40 supervisor", "md__home_john_networking_design_topology1_topology1_journal.html#autotoc_md43", null ],
-          [ "vlan 60 guest-services", "md__home_john_networking_design_topology1_topology1_journal.html#autotoc_md44", null ],
-          [ "vlan 70 internal-services", "md__home_john_networking_design_topology1_topology1_journal.html#autotoc_md45", null ],
-          [ "vlan 80 accounting", "md__home_john_networking_design_topology1_topology1_journal.html#autotoc_md46", null ]
+          [ "vlan 10 sales 192.168.10.0/25 192.168.10.128/25", "md__home_john_networking_design_topology1_topology1_journal.html#autotoc_md40", null ],
+          [ "vlan 20 guest 192.168.20.0/23 192.168.22.0/24", "md__home_john_networking_design_topology1_topology1_journal.html#autotoc_md41", null ],
+          [ "vlan 30 management 192.168.30.0/25 192.168.30.128/25", "md__home_john_networking_design_topology1_topology1_journal.html#autotoc_md42", null ],
+          [ "vlan 40 supervisor 192.168.40.0/25 192.168.40.128/25", "md__home_john_networking_design_topology1_topology1_journal.html#autotoc_md43", null ],
+          [ "vlan 60 guest-services 192.168.60.0/24", "md__home_john_networking_design_topology1_topology1_journal.html#autotoc_md44", null ],
+          [ "vlan 70 internal-services 192.168.70.0/24", "md__home_john_networking_design_topology1_topology1_journal.html#autotoc_md45", null ],
+          [ "vlan 80 accounting 192.168.80.0/24", "md__home_john_networking_design_topology1_topology1_journal.html#autotoc_md46", null ]
         ] ],
         [ "IPv4 DHCP pools", "md__home_john_networking_design_topology1_topology1_journal.html#autotoc_md47", [
           [ "Main Site:", "md__home_john_networking_design_topology1_topology1_journal.html#autotoc_md48", null ],
@@ -71,7 +71,7 @@ var NAVTREE =
         [ "ISP Simulation", "md__home_john_networking_design_topology1_topology1_journal.html#autotoc_md64", null ],
         [ "Topology Diagram (Draft)", "md__home_john_networking_design_topology1_topology1_journal.html#autotoc_md65", null ]
       ] ],
-      [ "Etherchannel", "md__home_john_networking_design_topology1_topology1_journal.html#autotoc_md66", null ],
+      [ "Ether-channel", "md__home_john_networking_design_topology1_topology1_journal.html#autotoc_md66", null ],
       [ "VLANs", "md__home_john_networking_design_topology1_topology1_journal.html#autotoc_md74", null ],
       [ "STP", "md__home_john_networking_design_topology1_topology1_journal.html#autotoc_md85", null ],
       [ "IPv4", "md__home_john_networking_design_topology1_topology1_journal.html#autotoc_md90", null ],
@@ -98,8 +98,7 @@ var NAVTREE =
       [ "IPv6 Addressing + HSRP v2", "md__home_john_networking_design_topology1_topology1_journal.html#autotoc_md151", null ],
       [ "IPv6 Static routes", "md__home_john_networking_design_topology1_topology1_journal.html#autotoc_md162", null ],
       [ "SSH", "md__home_john_networking_design_topology1_topology1_journal.html#autotoc_md173", null ],
-      [ "Ansible Example", "md__home_john_networking_design_topology1_topology1_journal.html#autotoc_md176", null ],
-      [ "IPv6 ACL", "md__home_john_networking_design_topology1_topology1_journal.html#autotoc_md179", null ]
+      [ "Ansible Example", "md__home_john_networking_design_topology1_topology1_journal.html#autotoc_md176", null ]
     ] ]
   ] ]
 ];

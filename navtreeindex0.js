@@ -26,7 +26,6 @@ var NAVTREEINDEX0 =
 "md__home_john_networking_design_topology1_topology1_journal.html#autotoc_md162":[2,17],
 "md__home_john_networking_design_topology1_topology1_journal.html#autotoc_md173":[2,18],
 "md__home_john_networking_design_topology1_topology1_journal.html#autotoc_md176":[2,19],
-"md__home_john_networking_design_topology1_topology1_journal.html#autotoc_md179":[2,20],
 "md__home_john_networking_design_topology1_topology1_journal.html#autotoc_md29":[2,0],
 "md__home_john_networking_design_topology1_topology1_journal.html#autotoc_md30":[2,0,0],
 "md__home_john_networking_design_topology1_topology1_journal.html#autotoc_md31":[2,1],

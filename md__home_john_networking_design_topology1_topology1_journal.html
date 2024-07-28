@@ -97,7 +97,7 @@ $(document).ready(function(){initNavTree('md__home_john_networking_design_topolo
 Proprietary Software Requirements</h1>
 <h2><a class="anchor" id="autotoc_md30"></a>
 Cisco IOS</h2>
-<p >The Cisco IOS versions I am using are IOL for almost all the devices. These images only have ethernet 10Mbps ports virtualised. I have a cloud router image for R1, so I can practice more advanced topics IOT doesnt support, for example REST config. </p>
+<p >The Cisco IOS versions I am using are IOL for almost all the devices. These images only have ethernet 10Mbps ports virtualised. I have a cloud router image for R1, so I can practice more advanced topics IOL doesn't support, for example REST config. </p>
 <h1><a class="anchor" id="autotoc_md31"></a>
 Topology Summary</h1>
 <p >This topology has two sites. The topology represents a DIY retailer named TapeItUp. This company uses in-store web catalogues to compliment customer browsing. There is a main and outreach site.</p>
@@ -145,7 +145,7 @@ Loopbacks IPv4 192.168.2.0/26</h2>
 <div class="line">SW3 192.168.2.13</div>
 <div class="line">SW4 192.168.2.14</div>
 </div><!-- fragment --> <h2><a class="anchor" id="autotoc_md37"></a>
-Links IPv4 Starting at 192.168.2.64</h2>
+IPv4 Links in subnet 192.168.2.64/26</h2>
 <h3><a class="anchor" id="autotoc_md38"></a>
 (.64 to .127) subnetted /31</h3>
 <table class="markdownTable">
@@ -168,7 +168,7 @@ Links IPv4 Starting at 192.168.2.64</h2>
 Vlans &amp; IPv4</h2>
 <p >Native VLAN = 933</p>
 <h3><a class="anchor" id="autotoc_md40"></a>
-vlan 10 sales</h3>
+vlan 10 sales 192.168.10.0/25 192.168.10.128/25</h3>
 <p >126 usable addresses </p><div class="fragment"><div class="line">main: 192.168.10.0/25</div>
 <div class="line">SW3SVI: 192.168.10.124</div>
 <div class="line">SW4SVI: 192.168.10.125</div>
@@ -176,15 +176,15 @@ vlan 10 sales</h3>
 <div class="line">outreach: 192.168.10.128/25</div>
 <div class="line">gateway: 192.168.10.254</div>
 </div><!-- fragment --> <h3><a class="anchor" id="autotoc_md41"></a>
-vlan 20 guest</h3>
-<p >510 usable addresses </p><div class="fragment"><div class="line">main: 192.168.20.0/23</div>
+vlan 20 guest 192.168.20.0/23 192.168.22.0/24</h3>
+<p >510 usable addresses &amp; 254 usable addresses </p><div class="fragment"><div class="line">main: 192.168.20.0/23</div>
 <div class="line">SW3SVI: 192.168.21.252</div>
 <div class="line">SW4SVI: 192.168.21.253</div>
 <div class="line">HSRP-gate: 192.168.21.254</div>
 <div class="line">outreach: 192.168.22.0/24</div>
 <div class="line">gateway: 192.168.22.254</div>
 </div><!-- fragment --> <h3><a class="anchor" id="autotoc_md42"></a>
-vlan 30 management</h3>
+vlan 30 management 192.168.30.0/25 192.168.30.128/25</h3>
 <p >126 usable addresses </p><div class="fragment"><div class="line">main: 192.168.30.0/25</div>
 <div class="line">management_server: 192.168.30.123</div>
 <div class="line">SW1SVI: 192.168.30.1</div>
@@ -198,7 +198,7 @@ vlan 30 management</h3>
 <div class="line">SW7SVI: 192.168.30.137</div>
 <div class="line">Site2_Gateway: 192.168.30.254</div>
 </div><!-- fragment --><h3><a class="anchor" id="autotoc_md43"></a>
-vlan 40 supervisor</h3>
+vlan 40 supervisor 192.168.40.0/25 192.168.40.128/25</h3>
 <p >126 usable addresses </p><div class="fragment"><div class="line">main: 192.168.40.0/25</div>
 <div class="line">SW3SVI: 192.168.40.124</div>
 <div class="line">SW4SVI: 192.168.40.125</div>
@@ -206,7 +206,7 @@ vlan 40 supervisor</h3>
 <div class="line">outreach: 192.168.40.128/25</div>
 <div class="line">gateway: 192.168.40.254</div>
 </div><!-- fragment --> <h3><a class="anchor" id="autotoc_md44"></a>
-vlan 60 guest-services</h3>
+vlan 60 guest-services 192.168.60.0/24</h3>
 <p >254 usable addresses </p><div class="fragment"><div class="line">main: 192.168.60.0/24</div>
 <div class="line">dns_server: 192.168.60.250</div>
 <div class="line">web_server: 192.168.60.251</div>
@@ -214,14 +214,14 @@ vlan 60 guest-services</h3>
 <div class="line">SW4SVI: 192.168.60.253</div>
 <div class="line">HSRP-gate: 192.168.60.254</div>
 </div><!-- fragment --> <h3><a class="anchor" id="autotoc_md45"></a>
-vlan 70 internal-services</h3>
+vlan 70 internal-services 192.168.70.0/24</h3>
 <p >254 usable addresses </p><div class="fragment"><div class="line">main: 192.168.70.0/24</div>
 <div class="line">aaa_server 192.168.70.251</div>
 <div class="line">SW3SVI: 192.168.70.252</div>
 <div class="line">SW4SVI: 192.168.70.253</div>
 <div class="line">HSRP-gate: 192.168.70.254</div>
 </div><!-- fragment --> <h3><a class="anchor" id="autotoc_md46"></a>
-vlan 80 accounting</h3>
+vlan 80 accounting 192.168.80.0/24</h3>
 <p >254 usable addresses </p><div class="fragment"><div class="line">main: 192.168.80.0/24</div>
 <div class="line">SW3SVI: 192.168.80.252</div>
 <div class="line">SW4SVI: 192.168.80.253</div>
@@ -264,7 +264,7 @@ Outreach Site:</h3>
 </table>
 <h2><a class="anchor" id="autotoc_md50"></a>
 IPv6</h2>
-<p >When creating the IPv6 assignments I ensure the static addresses and DHCP address pool fall outside of SLAAC. I assign a large amount of amount of addresses to DHCP but I exclude 4 Bytes giving 65,536 addresses. I use /127 addresses for point to point links instead of just link-local. It is reproducible when replacing devices, it increases readability and ease of debugging. Unique local FC00::/7 would also work.</p>
+<p >When creating the IPv6 assignments I ensure the static addresses and DHCP address pool fall outside of SLAAC. I assign a large amount of amount of addresses to DHCP but I exclude 4 Bytes giving 65,536 addresses. I use /127 addresses for point to point links instead of just link-local. It is reproducible when replacing devices, it increases readability and ease of debugging. Unique local FC00::/7 would also work if internet is not required.</p>
 <p >2001:db8:0:0000::/56 is subnetted as follows:</p>
 <p >2001:db8:0:00ff::/64 is subnetted as follows: </p>
 <h3><a class="anchor" id="autotoc_md51"></a>
@@ -452,9 +452,8 @@ ISP Simulation</h2>
 Topology Diagram (Draft)</h2>
 <p >It is not good quality. I will look at creating a proper diagram in the future. <img src="topology1.png" alt="This is an example image" width="90%" class="inline"/></p>
 <h1><a class="anchor" id="autotoc_md66"></a>
-Etherchannel</h1>
-<p >There are three etherchannels in the topology. SW6 connecting to the two distribution layer switches is layer 2. I initially planned the two distribution switches interconnecting as layer 3, but I realised that would cause extra traffic. If the root bridge svi and HSRP master did not match it would cause layer 2 traffic to switch avoiding port-channel 2. <br  />
-</p>
+Ether-channel</h1>
+<p >There are three ether-channels in the topology. SW6 connecting to the two distribution layer switches is layer 2. I initially planned the two distribution switches interconnecting as layer 3, but I realised that could cause extra traffic. If the root bridge SVI and HSRP master did not match it would cause layer 2 traffic to switch avoiding port-channel 2. Really this would only occur due to misconfiguration or hardware failures outside of preemption windows for HSRP. Regardless I configured it as a layer 2 link.</p>
 <p >I configure SW6-SW3 as LACP. Active &amp; passive are the LACP keywords. active-active is a little slower to negotiate than active-passive. </p>
 <h3><a class="anchor" id="autotoc_md67"></a>
 SW6 Config</h3>
@@ -484,10 +483,10 @@ SW4 Config</h3>
 <div class="line">channel-group 2 mode active</div>
 </div><!-- fragment --><h3><a class="anchor" id="autotoc_md73"></a>
 Testing</h3>
-<p >I view my etherchannels with show etherchannel summary. They all report as layer 2 since I haven't used <b>no switchport</b> on the port-channels. </p>
+<p >I view my ether-channels with show ether-channel summary. They all report as layer 2 since I haven't used <b>no switchport</b> on the port-channels. </p>
 <h1><a class="anchor" id="autotoc_md74"></a>
 VLANs</h1>
-<p >VLANs are outlined in the Topology Data section. I will not be using VTP in my configuration. Trunk encapsulation is dot1q.</p>
+<p >VLANs are outlined in the Topology Data section. I will not be using VTP in my configuration. Trunk encapsulation is dot1q in modern networks. R3 needs to act as a router on a stick. The sub-interfaces act as default gateways much like SVI's. They will be assigned layer 3 addresses in a different section.</p>
 <h3><a class="anchor" id="autotoc_md75"></a>
 Switch 1-7 Config</h3>
 <div class="fragment"><div class="line">vlan 10</div>
@@ -650,8 +649,7 @@ SW7 Config</h3>
 <div class="line">switchport trunk native vlan 933</div>
 <div class="line">switchport mode trunk</div>
 <div class="line">switchport nonegotiate</div>
-</div><!-- fragment --><p> R3 needs to act as a router on a stick. The sub-interfaces act as default gateways much like SVI's. They will be assigned layer 3 addresses in a different section. </p>
-<h3><a class="anchor" id="autotoc_md83"></a>
+</div><!-- fragment --> <h3><a class="anchor" id="autotoc_md83"></a>
 R3 Config</h3>
 <div class="fragment"><div class="line">interface e0/1</div>
 <div class="line">no shutdown</div>
@@ -664,12 +662,12 @@ R3 Config</h3>
 <div class="line">interface e0/1.40</div>
 <div class="line">encapsulation dot1Q 40</div>
 <div class="line">exit</div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md84"></a>
+</div><!-- fragment --> <h3><a class="anchor" id="autotoc_md84"></a>
 Testing</h3>
 <p ><b>show vlan brief</b> displays the vlan assignments. <b>Show interface trunk</b> is another good command for confirming the trunk config. </p>
 <h1><a class="anchor" id="autotoc_md85"></a>
 STP</h1>
-<p >For STP I want different ports blocking per VLAN to help reduce wasted bandwidth. I configure Rapid PVST+. I configure SW3 as root for sales and supervisor. I configure SW4 as root for guest and the others.</p>
+<p >For STP I want different ports blocking per VLAN to help reduce unnecessary congestion. I configure Rapid PVST+. I configure SW3 as root for sales and supervisor. I configure SW4 as root for guest and the others.</p>
 <h3><a class="anchor" id="autotoc_md86"></a>
 SW3 Config</h3>
 <div class="fragment"><div class="line">spanning-tree mode rapid-pvst</div>
@@ -739,7 +737,7 @@ Testing</h3>
 <div class="line">Po2                 Root FWD 47        128.66   P2p</div>
 </div><!-- fragment --> <h1><a class="anchor" id="autotoc_md90"></a>
 IPv4</h1>
-<p >I configure gateway addresses for R3 sub-interfaces. This is where all the outreach site traffic will be routed between VLANs. I create vlan SVI on SW3 &amp; SW4. This is where the main site traffic will be routed between VLAN's. HSRP will provide a redundant gateway address between the distribution switch SVI's. I am using /31 for subnets with two devices. This should be supported by all the network devices.</p>
+<p >I configure gateway addresses for R3 sub-interfaces. This is where all the outreach site traffic will be routed between VLANs. I create vlan SVI's on SW3 &amp; SW4. This is where the main site traffic will be routed between VLAN's. HSRP will provide a redundant gateway address between the distribution switch SVI's. I am using /31 for subnets with two devices. This should be supported by all the network devices.</p>
 <h3><a class="anchor" id="autotoc_md91"></a>
 R1 Config</h3>
 <div class="fragment"><div class="line">interface g1</div>
@@ -897,7 +895,7 @@ Testing</h3>
 <p >I can check this config using <b>show ip int brief</b> on device.</p>
 <h1><a class="anchor" id="autotoc_md102"></a>
 First Hop Redundancy - HSRP</h1>
-<p >I configure HSRP for first hop redundancy. Without HSRP, losing a distribution switch would knock out the single gateway that must be assigned on hosts. With HSRP either switch can act as the gateway for traffic between subnets. For HSRP the priority will mixed like spanning tree priorities were. SW3 interface vlan 10 &amp; interface vlan 40 will be priority. SW4 will be priority for all the other vlan SVI HSRP processes. The id will match the vlan id. The switches have a delay before they try to preempt their master state of 60secs. This is to mitigate excessive outages due to flapping. The timers are set much lower than default resulting in faster convergence at the cost of bandwidth and stability. The 650 hold time with 200 hello means that the switch would likely have to miss 3 consecutive hello frames before taking over.</p>
+<p >I configure HSRP for first hop redundancy. Without HSRP, losing a distribution switch would knock out the single gateway that must be assigned on hosts. With HSRP either switch can act as the gateway for traffic between subnets. For HSRP the priority will match the STP root bridges. SW3 interface vlan 10 &amp; interface vlan 40 will be priority. SW4 will be priority for all the other vlan SVI HSRP processes. The id will match the vlan id. The switches have a delay before they try to preempt their master state of 60secs. This is to mitigate excessive outages due to flapping. The timers are set much lower than default resulting in faster convergence at the cost of bandwidth and stability. The 650 hold time with 200 hello means that the switch would likely have to miss 3 consecutive hello frames before taking over.</p>
 <h3><a class="anchor" id="autotoc_md103"></a>
 SW3 Config</h3>
 <div class="fragment"><div class="line">interface vlan 10</div>
@@ -982,7 +980,7 @@ Testing</h3>
 <div class="line">  Standby router is 192.168.10.125, priority 111 (expires in 0.688 sec)</div>
 </div><!-- fragment --><h1><a class="anchor" id="autotoc_md106"></a>
 OSPF</h1>
-<p >I enable OSPF on the layer 3 devices. I disable OSPF advertisements on the WAN interfaces. In a later section I intend to use OSPF over vpn connections to the outreach site. I set the SVI's as passive besides Vlan 30 management. Both R1 and R2 are advertising the default route but the route cost will depend on who is the HSRP gateway for VLAN 30. I set the reference cost to 100k to avoid gigabit links having the same bandwidth as 100 megabit links. </p>
+<p >I enable OSPF on the layer 3 devices. I disable OSPF advertisements on the WAN interfaces. In a later section I intend to use OSPF over vpn connections to the outreach site. I set the SVI's as passive besides Vlan 30 management. Both R1 and R2 are advertising the default route but the route cost will depend on who is the HSRP gateway for VLAN 30. I set the reference cost to 100k to avoid gigabit links having the same bandwidth as 100 megabit links. All of the network is single area. The ISP doesn't participate in OSPF. Default gateways direct traffic that doesn't belong in the LAN on either site to the ISP. </p>
 <h3><a class="anchor" id="autotoc_md107"></a>
 R1 Config</h3>
 <div class="fragment"><div class="line">ip route 0.0.0.0 0.0.0.0 10.10.10.11</div>
@@ -1084,9 +1082,9 @@ SW4 Config</h3>
 <div class="line">exit</div>
 </div><!-- fragment --> <h1><a class="anchor" id="autotoc_md112"></a>
 Cisco DHCP (Non-Redundant)</h1>
-<p >I have decided to use SW3(main) and R3(outreach) as the DHCP servers. Note the SW3 selection creates a single point of failure and may stress the hardware. This is the logical choice out of CCNA level topics I believe.</p>
-<p >SW4 SVI will be configured with the helper address so they forward DHCP traffic to the server on SW3. If SW3 goes down then clients in the main site will be unable to use DHCP.</p>
-<p >As specified in topology data section each vlan has an excluded address range. </p>
+<p >I have decided to use SW3(main) and R3(outreach) as the DHCP servers. Note the SW3 selection creates a single point of failure and may stress the hardware. This is the logical choice out of CCNA level topics I believe. A backup should be considered in the future.</p>
+<p >SW4 SVI will be configured with a helper address so SW4 forwards DHCP traffic to the server on SW3. If SW3 goes down then clients in the main site will be unable to use DHCP.</p>
+<p >As specified in topology data section each vlan has an excluded address range for static IP assignment. </p>
 <h3><a class="anchor" id="autotoc_md113"></a>
 R3 Config</h3>
 <div class="fragment"><div class="line">ip dhcp excluded-address 192.168.10.250 192.168.10.255</div>
@@ -1507,7 +1505,7 @@ management_server_access</h3>
 <div class="line">deny any any</div>
 </div><!-- fragment --> <h1><a class="anchor" id="autotoc_md135"></a>
 Switch Security</h1>
-<p >I enable port security. For each port I use the default of max 1 mac address and leave the default shutdown violation. This prevents MAC flooding. There are no ip phones to share access ports. I enable DHCP snooping which prevents hosts from acting like a DHCP server. I enable DAI to ensure ARP traffic is correct for static and dhcp address assignments. Additionally I assign unused ports to an unused vlan, disable dtp, assign access and shutdown.</p>
+<p >I enable port security. For each port I use the default of max 1 mac address and leave the default shutdown violation. This prevents MAC flooding. There are no ip phones to share access ports. I enable DHCP snooping which prevents hosts from acting like a DHCP server. I enable DAI to ensure ARP traffic is correct for static and DHCP address assignments. Additionally I assign unused ports to an unused vlan, disable dtp, assign access and shutdown.</p>
 <h3><a class="anchor" id="autotoc_md136"></a>
 SW1 Config</h3>
 <div class="fragment"><div class="line">ip dhcp snooping vlan 10,20,40,80</div>
@@ -1775,7 +1773,7 @@ SW4 Config</h3>
 <div class="line">    shutdown</div>
 </div><!-- fragment --> <h1><a class="anchor" id="autotoc_md143"></a>
 OSPF Inter-Site</h1>
-<p >In order for OSPF to function over the IPSec additional configuration is needed. I manually define the neighbour. This means unicast traffic will be use to attempt to form a neighbour relationship.</p>
+<p >In order for OSPF to function over the IPSec additional configuration is needed. I manually define the neighbour. This means unicast traffic will be used to form a neighbour relationship.</p>
 <h3><a class="anchor" id="autotoc_md144"></a>
 R1 Config</h3>
 <div class="fragment"><div class="line">router os 1</div>
@@ -2102,8 +2100,7 @@ SW7 Config</h3>
 <div class="line">exit</div>
 </div><!-- fragment --> <h1><a class="anchor" id="autotoc_md162"></a>
 IPv6 Static routes</h1>
-<p >Note IPv6 traffic between the two sites is not encrypted like IPv4 is. This is beyond CCNA. In reality this would be a major security issue.</p>
-<p >Unlike a dynamic routing protocol, if the R1-SW3 link fails, the ISP will continue to send traffic to R1 and not R2. </p>
+<p >Note IPv6 traffic between the two sites is not encrypted like IPv4 is. This is beyond CCNA. In reality this would be a major security issue. </p>
 <h3><a class="anchor" id="autotoc_md163"></a>
 R1</h3>
 <div class="fragment"><div class="line">ipv6 route 0::/0 g2 2001:db8:0:ff::ffff</div>
@@ -2177,7 +2174,7 @@ Router and Switch Config</h3>
 <div class="line">exit</div>
 </div><!-- fragment --> <h1><a class="anchor" id="autotoc_md176"></a>
 Ansible Example</h1>
-<p >For an initial demo of ansible I have created a ssh playbook to change the banner on the device. The local user authentication is used. When I run the playbook with ansible it sucessfully changes the banner on R2. </p>
+<p >For an initial demo of ansible I create a SSH playbook to change the banner on the device. The local user authentication is used. When I run the playbook with ansible it sucessfully changes the banner on R2. </p>
 <h3><a class="anchor" id="autotoc_md177"></a>
 Playbook testssh.yaml</h3>
 <div class="fragment"><div class="line">---</div>
@@ -2235,10 +2232,7 @@ inventory.yaml</h3>
 <div class="line">          ansible_user: auto</div>
 <div class="line">          ansible_password: otua</div>
 <div class="line">          ansible_connection: local</div>
-</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md179"></a>
-IPv6 ACL</h1>
-<p >I have yet to configure the IPv6 ACL so it has practically no security. </p>
-</div></div><!-- contents -->
+</div><!-- fragment --> </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->
 <!-- HTML footer for doxygen 1.9.4-->
