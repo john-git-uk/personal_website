@@ -118,13 +118,13 @@ Dockerfile</h3>
 <div class="line">ADD ./authorize /etc/freeradius/3.0/mods-config/files/authorize</div>
 <div class="line">ADD ./tac_plus.conf /etc/tacacs+/tac_plus.conf</div>
 <div class="line">ADD ./runonce.sh /sbin/runonce.sh</div>
-<div class="line">ADD ./starter.sh /sbin/starter.sh</div>
+<div class="line">ADD ./starter.sh /root/starter.sh</div>
 <div class="line">ADD ./empty.sh /root/networkconfig.sh</div>
 <div class="line"> </div>
 <div class="line">RUN DEBIAN_FRONTEND=noninteractive chmod 755 /sbin/runonce.sh; sleep 1; /sbin/runonce.sh</div>
 <div class="line"> </div>
-<div class="line">VOLUME [ &quot;/root&quot;, &quot;/etc/freeradius&quot;, &quot;/etc/tacacs+&quot;, &quot;/etc/ssh&quot;, &quot;/var/log&quot; ]</div>
-<div class="line">CMD [ &quot;sh&quot;, &quot;-c&quot;, &quot;/sbin/starter.sh&quot; ]</div>
+<div class="line">VOLUME [ &quot;/root&quot;, &quot;/etc&quot;, &quot;/var/log&quot; ]</div>
+<div class="line">CMD [ &quot;sh&quot;, &quot;-c&quot;, &quot;/root/starter.sh&quot; ]</div>
 </div><!-- fragment --> <h3><a class="anchor" id="autotoc_md184"></a>
 runonce.sh</h3>
 <div class="fragment"><div class="line">touch /var/log/tac_plus.acct</div>
