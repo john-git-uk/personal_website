@@ -385,9 +385,7 @@ Site 2 - Vlan 40</h3>
 <div class="line">Gateway: 2001:db8:0:0024::1/64</div>
 </div><!-- fragment --> <h2><a class="anchor" id="autotoc_md64"></a>
 ISP Simulation</h2>
-<p >For internet access I exit the lab via the alpouter node. This performs nat66. For host machine access I exit the lab via the Metal node. </p><div class="fragment"><div class="line">en</div>
-<div class="line">conf t</div>
-<div class="line">host ISP</div>
+<p >For internet access I exit the lab via the alpouter node. This performs nat66. For host machine access I exit the lab via the Metal node. </p><div class="fragment"><div class="line">host ISP</div>
 <div class="line"> </div>
 <div class="line">access-list 1 permit 10.10.10.10</div>
 <div class="line">access-list 1 deny   any</div>
@@ -396,48 +394,58 @@ ISP Simulation</h2>
 <div class="line">access-list 3 permit 10.10.10.30</div>
 <div class="line">access-list 3 deny   any</div>
 <div class="line"> </div>
+<div class="line">no ip access-list extended NAT</div>
+<div class="line">ip access-list extended NAT</div>
+<div class="line">10 permit ip host 10.10.10.10 any</div>
+<div class="line">20 permit ip host 10.10.10.11 any</div>
+<div class="line">30 permit ip host 10.10.10.20 any</div>
+<div class="line">40 permit ip host 10.10.10.21 any</div>
+<div class="line">50 permit ip host 10.10.10.30 any</div>
+<div class="line">60 permit ip host 10.10.10.31 any</div>
+<div class="line">10000 deny ip any any</div>
+<div class="line">exit</div>
+<div class="line"> </div>
 <div class="line">ip routing</div>
-<div class="line">ipv un</div>
+<div class="line">ipv6 unicast</div>
 <div class="line"> </div>
 <div class="line">!ISP-R1 </div>
 <div class="line">interface e0/0</div>
-<div class="line">no switchp</div>
 <div class="line">ip access-group 1 in</div>
 <div class="line">ip add 10.10.10.11 255.255.255.254</div>
 <div class="line">ipv6 enable</div>
 <div class="line">ipv6 add 2001:db8:0:00ff::ffff/127</div>
 <div class="line">no shutdown</div>
+<div class="line">ip nat inside</div>
 <div class="line"> </div>
 <div class="line">!ISP-R2</div>
 <div class="line">interface e0/1</div>
-<div class="line">no switchp</div>
 <div class="line">ip access-group 2 in</div>
 <div class="line">ip add 10.10.10.21 255.255.255.254</div>
 <div class="line">ipv6 enable</div>
 <div class="line">ipv6 add 2001:db8:0:00ff::fffd/127</div>
 <div class="line">no shutdown</div>
+<div class="line">ip nat inside</div>
 <div class="line"> </div>
 <div class="line">!ISP-R3 2001:db8:0:00ff::fffb/127</div>
 <div class="line">interface e0/2</div>
-<div class="line">no switchp</div>
 <div class="line">ip access-group 3 in</div>
 <div class="line">ip add 10.10.10.31 255.255.255.254</div>
 <div class="line">ipv6 enable</div>
 <div class="line">ipv6 add 2001:db8:0:00ff::fffb/127</div>
 <div class="line">no shutdown</div>
+<div class="line">ip nat inside</div>
 <div class="line"> </div>
 <div class="line">!ISP-metal 2001:db8:0:00ff::fff9/127</div>
 <div class="line">interface e0/3</div>
-<div class="line">no switchp</div>
 <div class="line">ip address 192.168.1.245 255.255.255.0</div>
 <div class="line">ipv6 enable</div>
 <div class="line">no shutdown</div>
+<div class="line">ip nat outside</div>
 <div class="line">ipv6 add 2001:db8:0:00ff::fff9/127</div>
 <div class="line">exit</div>
 <div class="line"> </div>
 <div class="line">! ISP-alprouter 2001:db8:0:00ff::fff7/127</div>
 <div class="line">interface e1/0</div>
-<div class="line">no switchp</div>
 <div class="line">ipv6 enable</div>
 <div class="line">no shutdown</div>
 <div class="line">ipv6 add 2001:db8:0:00ff::fff7/127</div>
@@ -448,6 +456,12 @@ ISP Simulation</h2>
 <div class="line">ipv6 route 2001:db8:0:0000::/60 e0/0 2001:db8:0:00ff::fffe</div>
 <div class="line">ipv6 route 2001:db8:0:0000::/60 e0/1 2001:db8:0:00ff::fffa 5</div>
 <div class="line">ipv6 route 2001:db8:0:0020::/60 e0/2 2001:db8:0:00ff::fffc</div>
+<div class="line"> </div>
+<div class="line">route-map NAT permit 10</div>
+<div class="line">match ip address NAT</div>
+<div class="line">exit</div>
+<div class="line"> </div>
+<div class="line">ip nat inside source route NAT interface e0/3 overload</div>
 </div><!-- fragment --> <h2><a class="anchor" id="autotoc_md65"></a>
 Topology Diagram (Draft)</h2>
 <p >It is not good quality. I will look at creating a proper diagram in the future. <img src="topology1.png" alt="This is an example image" width="90%" class="inline"/></p>
@@ -899,7 +913,7 @@ SW7 Config</h3>
 <div class="line">exit</div>
 </div><!-- fragment --><h3><a class="anchor" id="autotoc_md101"></a>
 Testing</h3>
-<p >I can check this config using <b>show ip int brief</b> on device.</p>
+<p >I can check this config using <b>show ip int brief</b> on device. </p>
 <h1><a class="anchor" id="autotoc_md102"></a>
 First Hop Redundancy - HSRP</h1>
 <p >I configure HSRP for first hop redundancy. Without HSRP, losing a distribution switch would knock out the single gateway that must be assigned on hosts. With HSRP either switch can act as the gateway for traffic between subnets. For HSRP the priority will match the STP root bridges. SW3 interface vlan 10 &amp; interface vlan 40 will be priority. SW4 will be priority for all the other vlan SVI HSRP processes. The id will match the vlan id. The switches have a delay before they try to preempt their master state of 60secs. This is to mitigate excessive outages due to flapping. The timers are set much lower than default resulting in faster convergence at the cost of bandwidth and stability. The 650 hold time with 200 hello means that the switch would likely have to miss 3 consecutive hello frames before taking over.</p>
@@ -1520,7 +1534,7 @@ management_server_access</h3>
 <div class="line">permit udp 192.168.0.0 0.0.255.255 host 192.168.60.250 eq domain</div>
 <div class="line">deny any any</div>
 </div><!-- fragment --> <h1><a class="anchor" id="autotoc_md135"></a>
-Switch Security</h1>
+Access Layer Security</h1>
 <p >I enable port security. For each port I use the default of max 1 mac address and leave the default shutdown violation. This prevents MAC flooding. There are no ip phones to share access ports. I enable DHCP snooping which prevents hosts from acting like a DHCP server. I enable DAI to ensure ARP traffic is correct for static and DHCP address assignments. Additionally I assign unused ports to an unused vlan, disable dtp, assign access and shutdown.</p>
 <h3><a class="anchor" id="autotoc_md136"></a>
 SW1 Config</h3>
@@ -2167,7 +2181,7 @@ SW7</h3>
 <div class="fragment"><div class="line">ipv6 route ::0/0 2001:DB8:0:23::1</div>
 </div><!-- fragment --> <h1><a class="anchor" id="autotoc_md173"></a>
 SSH</h1>
-<p >All network devices have a hostname and domain name TapeItUp. The password is not secure enough to be used in a non lab env.</p>
+<p >All network devices have a hostname and domain name TapeItUp. The password is not secure enough to be used in a non lab enviroment.</p>
 <h3><a class="anchor" id="autotoc_md174"></a>
 Debian Client Connect</h3>
 <div class="fragment"><div class="line">ssh -o KexAlgorithms=+diffie-hellman-group14-sha1 -o MACs=hmac-sha1 -o HostKeyAlgorithms=+ssh-rsa -o PubkeyAcceptedKeyTypes=+ssh-rsa 2001:db8:0:3::ff2 -l lab</div>

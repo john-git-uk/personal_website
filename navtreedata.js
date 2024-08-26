@@ -92,13 +92,16 @@ var NAVTREE =
           [ "management_server_access", "md__home_john_networking_design_topology1_topology1_journal.html#autotoc_md134", null ]
         ] ]
       ] ],
-      [ "Switch Security", "md__home_john_networking_design_topology1_topology1_journal.html#autotoc_md135", null ],
+      [ "Access Layer Security", "md__home_john_networking_design_topology1_topology1_journal.html#autotoc_md135", null ],
       [ "OSPF Inter-Site", "md__home_john_networking_design_topology1_topology1_journal.html#autotoc_md143", null ],
       [ "NTP", "md__home_john_networking_design_topology1_topology1_journal.html#autotoc_md147", null ],
       [ "IPv6 Addressing + HSRP v2", "md__home_john_networking_design_topology1_topology1_journal.html#autotoc_md151", null ],
       [ "IPv6 Static routes", "md__home_john_networking_design_topology1_topology1_journal.html#autotoc_md162", null ],
       [ "SSH", "md__home_john_networking_design_topology1_topology1_journal.html#autotoc_md173", null ],
       [ "Ansible Example", "md__home_john_networking_design_topology1_topology1_journal.html#autotoc_md176", null ]
+    ] ],
+    [ "Docker Nodes", "md__home_john_networking_design_docker_docker_journal.html", [
+      [ "aaa server", "md__home_john_networking_design_docker_docker_journal.html#autotoc_md180", null ]
     ] ]
   ] ]
 ];
