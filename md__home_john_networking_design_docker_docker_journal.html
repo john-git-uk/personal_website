@@ -99,8 +99,9 @@ aaa server</h1>
 <p >This is a fork of a docker image "adosztal/aaa". <br  />
  I noticed that bionic is an older Ubuntu release. However when I tried the latest release I found the tacacs package had been removed from the distro. I am continuing to use bionic for labs, but it would not be a good idea to run in the real world. LTS received security updates until April 2023, then security updates became no longer available for free. I believe there are also newer Linux tacacs server packages or addons for free radius that I may look at in the future.</p>
 <p >The container uses init.d for controlling services. It is similar to systemd but used for being lightweight. It starts services in the "starter.sh" script.</p>
-<p >I ensured the package iproute2 is installed. It is a useful package for adding network interface configuration without persistance and doesn't require restarting network services. It is used to assign configuration in my script.</p>
-<p >I ensured the package openssh-server is installed. This allows me to ssh into the container.</p>
+<p >I ensure the package iproute2 is installed. It is a useful package for adding network interface configuration without editing config files and without restarting the network service. It is used to assign configuration in my script.</p>
+<p >I ensure the package openssh-server is installed. This allows ssh into the container.</p>
+<p >I ensure the package libpam-radius-auth is installed. This allows login using radius accounts.</p>
 <p >Volumes are areas in the container filesystem that will be persistent. They are written to the container hosts filesystem as they are modified in the instance. Unlike other areas in the container filesystem, those will return to what is in the image when the container is shutdown. I add /etc/ssh to make sure my ssh config remains persistent. I also add /var/logs for persistent log files. I try to add "/etc/passwd", "/etc/shadow", "/etc/group", "/etc/gshadow" to make root password changes persistent. However, docker does not allow mounting individual files that are present in the container image (Ubuntu) already. Therefore I decide to mount the entire /etc directory</p>
 <p >I begin encountering problems when I added ssh and the network config to the starter script. The ssh service would not stay running, then the network adapters didn't get configured. I added logging to help diagnose and I added a check to whether the interfaces were up before continuing execution. This seemed to fix the issue either directly or due to a delay in execution. I then recognise that now this assumes the eth1 and eth2 exist and are relevant. This is not something that should be in the image, this should be in the instance. For this reason, I move the starter script to the /root directory. This directory is persistent, and can be overridden by the instance configuration. </p>
 <h3><a class="anchor" id="autotoc_md183"></a>
@@ -136,7 +137,7 @@ runonce.sh</h3>
 <div class="line">chmod 644 /etc/freeradius/3.0/mods-config/files/authorize</div>
 <div class="line">chown freerad:freerad /etc/tacacs+/tac_plus.conf</div>
 <div class="line">chmod 644 /etc/tacacs+/tac_plus.conf</div>
-<div class="line">chmod 755 /sbin/starter.sh</div>
+<div class="line">chmod 755 /root/starter.sh</div>
 <div class="line">mkdir -p /run/sshd</div>
 <div class="line">chmod 0755 /run/sshd</div>
 </div><!-- fragment --> <h3><a class="anchor" id="autotoc_md185"></a>
