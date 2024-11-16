@@ -100,8 +100,8 @@ $(document).ready(function(){initNavTree('md__2home_2john_2networking-design_2do
   <div class="headertitle"><div class="title">Docker Images</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md184"></a>Docker containers are lightweight solutions I use to either represent network nodes or containers themselves. Containers share the kernal with the underlying OS and other containers. This increases performance. They can also be portable and provide reproducible dependencies. They provide significant isolation like virtual machines, if less complete. </p>
-<h1><a class="anchor" id="autotoc_md185"></a>
+<div class="textblock"><p><a class="anchor" id="autotoc_md196"></a>Docker containers are lightweight solutions I use to either represent network nodes or containers themselves. Containers share the kernal with the underlying OS and other containers. This increases performance. They can also be portable and provide reproducible dependencies. They provide significant isolation like virtual machines, if less complete. </p>
+<h1><a class="anchor" id="autotoc_md197"></a>
 aaa server</h1>
 <p>This is a fork of a docker image "adosztal/aaa". <br  />
  I noticed that bionic is an older Ubuntu release. However when I tried the latest release I found the tacacs package had been removed from the distro. I am continuing to use bionic for labs, but it would not be a good idea to run in the real world. LTS received security updates until April 2023, then security updates became no longer available for free. I believe there are also newer Linux tacacs server packages or addons for free radius that I may look at in the future.</p>
@@ -111,7 +111,7 @@ aaa server</h1>
 <p>I ensure the package libpam-radius-auth is installed. This allows login using radius accounts.</p>
 <p>Volumes are areas in the container filesystem that will be persistent. They are written to the container hosts filesystem as they are modified in the instance. Unlike other areas in the container filesystem, those will return to what is in the image when the container is shutdown. I add /etc/ssh to make sure my ssh config remains persistent. I also add /var/logs for persistent log files. I try to add "/etc/passwd", "/etc/shadow", "/etc/group", "/etc/gshadow" to make root password changes persistent. However, docker does not allow mounting individual files that are present in the container image (Ubuntu) already. Therefore I decide to mount the entire /etc directory</p>
 <p>I begin encountering problems when I added ssh and the network config to the starter script. The ssh service would not stay running, then the network adapters didn't get configured. I added logging to help diagnose and I added a check to whether the interfaces were up before continuing execution. This seemed to fix the issue either directly or due to a delay in execution. I then recognise that now this assumes the eth1 and eth2 exist and are relevant. This is not something that should be in the image, this should be in the instance. For this reason, I move the starter script to the /root directory. This directory is persistent, and can be overridden by the instance configuration. </p>
-<h3><a class="anchor" id="autotoc_md186"></a>
+<h3><a class="anchor" id="autotoc_md198"></a>
 Dockerfile</h3>
 <div class="fragment"><div class="line">FROM ubuntu:bionic</div>
 <div class="line">#FROM ubuntu:focal</div>
@@ -133,7 +133,7 @@ Dockerfile</h3>
 <div class="line"> </div>
 <div class="line">VOLUME [ &quot;/root&quot;, &quot;/etc&quot;, &quot;/var/log&quot; ]</div>
 <div class="line">CMD [ &quot;sh&quot;, &quot;-c&quot;, &quot;/root/starter.sh&quot; ]</div>
-</div><!-- fragment --> <h3><a class="anchor" id="autotoc_md187"></a>
+</div><!-- fragment --> <h3><a class="anchor" id="autotoc_md199"></a>
 runonce.sh</h3>
 <div class="fragment"><div class="line">touch /var/log/tac_plus.acct</div>
 <div class="line">chown freerad:adm /var/log/tac_plus.acct</div>
@@ -147,7 +147,7 @@ runonce.sh</h3>
 <div class="line">chmod 755 /root/starter.sh</div>
 <div class="line">mkdir -p /run/sshd</div>
 <div class="line">chmod 0755 /run/sshd</div>
-</div><!-- fragment --> <h3><a class="anchor" id="autotoc_md188"></a>
+</div><!-- fragment --> <h3><a class="anchor" id="autotoc_md200"></a>
 starter.sh</h3>
 <div class="fragment"><div class="line"># Log file path</div>
 <div class="line">LOGFILE=&quot;/root/starter.log&quot;</div>

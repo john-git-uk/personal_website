@@ -270,8 +270,59 @@ Create a service to automatically generate route to any connected link local</h3
 <div class="line"> </div>
 <div class="line">rc-service autoroute start</div>
 </div><!-- fragment --> <h3><a class="anchor" id="autotoc_md24"></a>
-Ash Commands to Enable Nat</h3>
-<p>REDACTED must be replaced with your valid IPv6 globally routable prefix. </p><div class="fragment"><div class="line">apk add ip6tables</div>
+Ash Commands to Enable Nat and Filter Rules</h3>
+<p>REDACTED must be replaced with your valid IPv6 globally routable prefix.</p>
+<p>In addition to NAT66, I confgure some custom rules to control the labs presense on the internet. All traffic from the lab will be dropped unless it is: Destined for a private address Destined for an upstream dns server Destined for an ntp server Destined for Debian, Ubuntu, Alpine, Proxmox package sources</p>
+<p>The file iptables.py must be executed in the terminal first. Its actually an ash command. </p>
+<h4><a class="anchor" id="autotoc_md25"></a>
+IPv4</h4>
+<div class="fragment"><div class="line">1.1.1.1</div>
+<div class="line">8.8.8.8</div>
+<div class="line">8.8.4.4</div>
+<div class="line">176.58.109.199</div>
+<div class="line">https://uk.alpinelinux.org/alpine/</div>
+<div class="line">https://mirror.vinehost.net/alpine/</div>
+<div class="line">https://mirror.vinehost.net/debian/</div>
+<div class="line">https://mirror.vinehost.net/ubuntu/</div>
+<div class="line">https://download.proxmox.com/debian/pve</div>
+<div class="line">https://ftp.uk.debian.org/debian</div>
+<div class="line">https://security.debian.org</div>
+<div class="line">https://archive.ubuntu.com/ubuntu/</div>
+<div class="line">https://security.ubuntu.com/ubuntu/</div>
+<div class="line">https://download.docker.com/linux/ubuntu</div>
+</div><!-- fragment --> <h4><a class="anchor" id="autotoc_md26"></a>
+Terminal Commands</h4>
+<div class="fragment"><div class="line"># Create preup to block everything.</div>
+<div class="line">cat &lt;&lt;EOF113118 &gt; /etc/network/if-pre-up.d/iptables</div>
+<div class="line">#!/bin/ash</div>
+<div class="line"># Flush all existing rules</div>
+<div class="line">iptables -F FORWARD</div>
+<div class="line"># Drop all other inbound traffic on eth_int0</div>
+<div class="line">iptables -A FORWARD -i eth_int0 -j DROP</div>
+<div class="line">EOF113118</div>
+<div class="line"> </div>
+<div class="line">cat &lt;&lt;EOF113218 &gt; /etc/init.d/iptables_setup</div>
+<div class="line">#!/sbin/openrc-run</div>
+<div class="line"> </div>
+<div class="line">description=&quot;Custom iptables setup script&quot;</div>
+<div class="line"> </div>
+<div class="line">depend() {</div>
+<div class="line">    need net</div>
+<div class="line">    after net</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line">start() {</div>
+<div class="line">    ebegin &quot;Starting iptables setup&quot;</div>
+<div class="line">    /usr/local/bin/iptables.py</div>
+<div class="line">    eend $?</div>
+<div class="line">}</div>
+<div class="line">EOF113218</div>
+<div class="line">chmod +x /etc/init.d/iptables_setup</div>
+<div class="line">chmod +x /usr/local/bin/iptables.py</div>
+<div class="line">rc-update add iptables_setup default</div>
+</div><!-- fragment --><h4><a class="anchor" id="autotoc_md27"></a>
+IPv6</h4>
+<div class="fragment"><div class="line">apk add ip6tables</div>
 <div class="line">apk add conntrack-tools</div>
 <div class="line"> </div>
 <div class="line"># Flush all existing rules</div>
@@ -280,7 +331,7 @@ Ash Commands to Enable Nat</h3>
 <div class="line">ip6tables -X</div>
 <div class="line">ip6tables -t nat -X</div>
 <div class="line"> </div>
-<div class="line"># Set default policies to ACCEPT</div>
+<div class="line"># Set default policies</div>
 <div class="line">ip6tables -P INPUT ACCEPT</div>
 <div class="line">ip6tables -P FORWARD ACCEPT</div>
 <div class="line">ip6tables -P OUTPUT ACCEPT</div>
@@ -301,22 +352,22 @@ Ash Commands to Enable Nat</h3>
 <div class="line">echo &#39;#!/bin/sh&#39; &gt; /etc/network/if-pre-up.d/ip6tables</div>
 <div class="line">echo &#39;ip6tables-restore &lt; /etc/ip6tables.rules&#39; &gt;&gt; /etc/network/if-pre-up.d/ip6tables</div>
 <div class="line">chmod +x /etc/network/if-pre-up.d/ip6tables</div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md25"></a>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md28"></a>
 Testing</h3>
-<h4><a class="anchor" id="autotoc_md26"></a>
+<h4><a class="anchor" id="autotoc_md29"></a>
 Print ip6tables Rules</h4>
 <div class="fragment"><div class="line">ip6tables -L -v -n</div>
 <div class="line">ip6tables -t nat -L -v -n</div>
-</div><!-- fragment --> <h4><a class="anchor" id="autotoc_md27"></a>
+</div><!-- fragment --> <h4><a class="anchor" id="autotoc_md30"></a>
 Print Active Translations</h4>
 <div class="fragment"><div class="line">conntrack -L -f ipv6</div>
-</div><!-- fragment --> <h4><a class="anchor" id="autotoc_md28"></a>
+</div><!-- fragment --> <h4><a class="anchor" id="autotoc_md31"></a>
 Check Forwarding is Enabled</h4>
 <div class="fragment"><div class="line">sysctl net.ipv6.conf.all.forwarding</div>
-</div><!-- fragment --> <h4><a class="anchor" id="autotoc_md29"></a>
+</div><!-- fragment --> <h4><a class="anchor" id="autotoc_md32"></a>
 Reset Networking Service</h4>
 <div class="fragment"><div class="line">/etc/init.d/networking restart</div>
-</div><!-- fragment --> <h4><a class="anchor" id="autotoc_md30"></a>
+</div><!-- fragment --> <h4><a class="anchor" id="autotoc_md33"></a>
 Ping</h4>
 <div class="fragment"><div class="line"># lab ISP e1/0 link local</div>
 <div class="line">ping fe80::a8bb:ccff:fe00:e01 -I eth_int0</div>
@@ -326,7 +377,7 @@ Ping</h4>
 <div class="line">ping 2001:4860:4860::8888</div>
 <div class="line"># Metal</div>
 <div class="line">ping 2001:db8:0:00ff::fff8</div>
-</div><!-- fragment --> <h4><a class="anchor" id="autotoc_md31"></a>
+</div><!-- fragment --> <h4><a class="anchor" id="autotoc_md34"></a>
 Service Log</h4>
 <div class="fragment"><div class="line">tail /var/log/messages</div>
 </div><!-- fragment --> </div></div><!-- contents -->
